@@ -1,66 +1,51 @@
 package Zodiac::Nodes;
-
-use 5.006;
 use strict;
-use warnings;
+use warnings FATAL => 'all';
+our $VERSION = '0.01';
 
 =head1 NAME
 
-Zodiac::Nodes - The great new Zodiac::Nodes!
-
-=head1 VERSION
-
-Version 0.01
-
-=cut
-
-our $VERSION = '0.01';
-
+Zodiac::Nodes - Calculate North and South nodes.
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
-
-Perhaps a little code snippet.
+Object oriented interface:
 
     use Zodiac::Nodes;
 
-    my $foo = Zodiac::Nodes->new();
-    ...
+    my $object = Zodiac::Nodes->new();
+    my @nodes  = $object->nodes();
 
-=head1 EXPORT
+Procedural interface:
 
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+    use Zodiac::Nodes qw( nodes );
 
-=head1 SUBROUTINES/METHODS
+=head1 DESCRIPTION
 
-=head2 function1
+Calculate North and South nodes from given date.
 
-=cut
+=head1 REQUIRES
 
-sub function1 {
-}
+=over 4
 
-=head2 function2
+=item * L<some moddule>
 
-=cut
+=back
 
-sub function2 {
-}
+=head1 BUGS AND LIMITATIONS
 
-=head1 AUTHOR
+Please report any bugs or feature requests to either
 
-Jeff Anderson, C<< <jeffa at cpan.org> >>
+=over 4
 
-=head1 BUGS
+=item * Email: C<bug-zodiac-nodes at rt.cpan.org>
 
-Please report any bugs or feature requests to C<bug-zodiac-nodes at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Zodiac-Nodes>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+=item * Web: L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Zodiac-Nodes>
 
+=back
 
-
+I will be notified, and then you'll automatically be notified of progress
+on your bug as I make changes.
 
 =head1 SUPPORT
 
@@ -68,32 +53,41 @@ You can find documentation for this module with the perldoc command.
 
     perldoc Zodiac::Nodes
 
+The Github project is L<https://github.com/jeffa/Zodiac-Nodes>
 
 You can also look for information at:
 
 =over 4
 
-=item * RT: CPAN's request tracker (report bugs here)
+=item * RT: CPAN's request tracker (report bugs here) L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Zodiac-Nodes>
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Zodiac-Nodes>
+=item * AnnoCPAN: Annotated CPAN documentation L<http://annocpan.org/dist/Zodiac-Nodes>
 
-=item * AnnoCPAN: Annotated CPAN documentation
+=item * CPAN Ratings L<http://cpanratings.perl.org/d/Zodiac-Nodes>
 
-L<http://annocpan.org/dist/Zodiac-Nodes>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Zodiac-Nodes>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Zodiac-Nodes/>
+=item * Search CPAN L<http://search.cpan.org/dist/Zodiac-Nodes/>
 
 =back
 
-
 =head1 ACKNOWLEDGEMENTS
 
+Thank you very much! :)
+
+=over 4
+
+=item * Neil Bowers
+
+Helped with Makefile.PL suggestions and corrections.
+
+=item * L<Math::Matrix>
+
+Implementation of 2D array transposition.
+
+=back
+
+=head1 AUTHOR
+
+Jeff Anderson, C<< <jeffa at cpan.org> >>
 
 =head1 LICENSE AND COPYRIGHT
 
@@ -135,7 +129,4 @@ CONTRIBUTOR WILL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, OR
 CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THE PACKAGE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-
 =cut
-
-1; # End of Zodiac::Nodes
