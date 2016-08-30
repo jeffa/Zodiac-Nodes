@@ -3,6 +3,21 @@ use strict;
 use warnings FATAL => 'all';
 our $VERSION = '0.01';
 
+use Time::Piece;
+
+our $TIME;
+
+sub new {
+    my $class = shift;
+    my %attrs = ref($_[0]) eq 'HASH' ? %{+shift} : @_;
+    my $self = bless { %attrs }, $class;
+    $TIME = Time::Piece->strptime( $self->{date}, $self->{format} || '%Y-%m-%d' );
+    return $self;
+}
+
+1;
+
+__END__
 =head1 NAME
 
 Zodiac::Nodes - Calculate North and South nodes.
