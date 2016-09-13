@@ -7,12 +7,6 @@ use Data::Dumper;
 my $date1 = date('2001-08-27');
 my $date2 = date('1977-10-05');
 my $range = Date::Range->new($date1, $date2);
-#print $range->start, $/;
-#print $range->end, $/;
-#print $range->length, $/;
-
-#chomp( my @data = <DATA> );
-#print Dumper \@data;
 
 my %month = (
     Jan => 1,
@@ -29,10 +23,13 @@ my %month = (
     Dec => 12,
 );
 
+print "my \@zodiac = (\n";
 while (<DATA>) {
     chomp;
 
-    if (/^ \w/) {
+    if (/^\w/) {
+        print "    [\n";
+    } elsif (/^ \w/) {
         my @d;
         my @date = split '-', $_;
         for (@date) {
@@ -40,12 +37,21 @@ while (<DATA>) {
             my ($mon,$day,$year) = /(\w+)\s+(\d+),\s+(\d+)/; 
             push @d, sprintf "%4d-%02d-%02d", $year, $month{$mon}, $day;
         }
-        print join( ':', @d ), $/;
+        #print join( ':', @d ), $/;
+        printf "        [ date( '%s' ), date( '%s' ) ],\n", @d;
     } else {
-        print "$_\n";
+        print "    ],\n";
     }
-
 }
+print "    ],\n);\n";
+
+#my @zodiac = (
+#    [
+#       [ date( " ... " ), date( " ... " ) ],
+#       [ date( " ... " ), date( " ... " ) ],
+#       [ date( " ... " ), date( " ... " ) ],
+#    ],
+#);
 
 
 __DATA__
