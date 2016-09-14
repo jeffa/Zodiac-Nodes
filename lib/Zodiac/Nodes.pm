@@ -95,6 +95,10 @@ sub new {
     return $self;
 }
 
+sub get_zodiac {
+    return \@ZODIAC;
+}
+
 1;
 
 __END__
@@ -201,6 +205,8 @@ Calculate North and South nodes from given date.
 =over 4
 
 =item * C<new()>
+
+=item * C<get_zodiac()>
 
 =back
 
