@@ -37,22 +37,12 @@ while (<DATA>) {
             my ($mon,$day,$year) = /(\w+)\s+(\d+),\s+(\d+)/; 
             push @d, sprintf "%4d-%02d-%02d", $year, $month{$mon}, $day;
         }
-        #print join( ':', @d ), $/;
         printf "        [ date( '%s' ), date( '%s' ) ],\n", @d;
     } else {
         print "    ],\n";
     }
 }
 print "    ],\n);\n";
-
-#my @zodiac = (
-#    [
-#       [ date( " ... " ), date( " ... " ) ],
-#       [ date( " ... " ), date( " ... " ) ],
-#       [ date( " ... " ), date( " ... " ) ],
-#    ],
-#);
-
 
 __DATA__
 ARIES
