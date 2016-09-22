@@ -5,7 +5,7 @@ use Test::More tests => 50;
 use Zodiac::Nodes;
 use Data::Dumper;
 
-my $zodiac = Zodiac::Nodes::get_zodiac();
+my $ranges = Zodiac::Nodes::get_ranges();
 my %month = reverse (
     Jan => 1,
     Feb => 2,
@@ -21,7 +21,7 @@ my %month = reverse (
     Dec => 12,
 );
 
-for my $sign (@$zodiac) {
+for my $sign (@$ranges) {
     for my $range (@$sign) {
         my ($y1, $m1, $d1) = $range->[0]->as_ymd;
         my ($y2, $m2, $d2) = $range->[1]->as_ymd;

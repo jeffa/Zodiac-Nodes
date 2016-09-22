@@ -9,7 +9,23 @@ use Date::Simple qw 'date';
 use Data::Dumper;
 
 our $TIME;
-our @ZODIAC = (
+
+our @ZODIAC = qw(
+    ARIES
+    TAURUS
+    GEMINI
+    CANCER
+    LEO
+    VIRGO
+    LIBRA
+    SCORPIO
+    SAGITTARIUS
+    CAPRICORN
+    AQUARIUS
+    PISCES
+);
+
+our @RANGE = (
     [
         [ date( '1949-01-27' ), date( '1950-07-26' ) ],
         [ date( '1967-08-20' ), date( '1969-04-19' ) ],
@@ -90,13 +106,29 @@ sub new {
     my $class = shift;
     my %attrs = ref($_[0]) eq 'HASH' ? %{+shift} : @_;
     my $self = bless { %attrs }, $class;
+
     $TIME = Time::Piece->strptime( $self->{date}, $self->{format} || '%Y-%m-%d' );
-    print Dumper \@ZODIAC;
+    $TIME = date( $TIME->strftime( '%Y-%m-%d' ) );
+
     return $self;
 }
 
-sub get_zodiac {
-    return \@ZODIAC;
+sub get_nodes {
+    my $self = shift;
+    my $date = $self->{date};
+
+    for my $i (0 .. $#RANGE) {
+        for my $dates (@{ $RANGE[$i] }) {
+            my $range = Date::Range->new( @$dates );
+            if ($range->includes( $TIME )) {
+                return ( $ZODIAC[$i], $ZODIAC[ $i - 6 ] );
+            }
+        }
+    }
+}
+
+sub get_ranges {
+    return \@RANGE;
 }
 
 1;
@@ -206,7 +238,9 @@ Calculate North and South nodes from given date.
 
 =item * C<new()>
 
-=item * C<get_zodiac()>
+=item * C<get_nodes()>
+
+=item * C<get_ranges()>
 
 =back
 
@@ -252,6 +286,14 @@ You can also look for information at:
 =item * CPAN Ratings L<http://cpanratings.perl.org/d/Zodiac-Nodes>
 
 =item * Search CPAN L<http://search.cpan.org/dist/Zodiac-Nodes/>
+
+=back
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<http://astrostyle.com/learn-astrology/north-south-nodes/>
 
 =back
 
