@@ -6,7 +6,6 @@ our $VERSION = '0.01';
 use Time::Piece;
 use Date::Range;
 use Date::Simple qw 'date';
-use Data::Dumper;
 
 our $TIME;
 
